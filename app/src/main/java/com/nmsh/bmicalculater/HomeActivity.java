@@ -2,6 +2,7 @@ package com.nmsh.bmicalculater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -40,7 +41,6 @@ public class HomeActivity extends AppCompatActivity {
         ArrayAdapter adp1 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,a1);
 
         spinner1.setAdapter(adp1);
-
         final ArrayList<String> a2 = new ArrayList<>();
         a2.add("1");
         a2.add("2");
@@ -65,7 +65,8 @@ public class HomeActivity extends AppCompatActivity {
                 int h=12*Integer.parseInt(a1.get(a))+Integer.parseInt(a2.get(b));
                 int w= Integer.parseInt(etWeight.getText().toString());
                 float bmi=w/(h*h);
-
+                Intent c= new Intent(HomeActivity.this,ResultActivity.class);
+                startActivity(c);
 
 
 

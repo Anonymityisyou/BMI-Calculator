@@ -3,6 +3,7 @@ package com.nmsh.bmicalculater;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,8 @@ public class LoginPage extends AppCompatActivity {
     RadioGroup rgSex;
     RadioButton rbMale,rbFemale;
     Button btnRegister;
+    SharedPreferences sp;
+    String sex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class LoginPage extends AppCompatActivity {
         rbMale=findViewById(R.id.rbMale);
         rbFemale=findViewById(R.id.rbFemale);
         btnRegister=findViewById(R.id.btnRegister);
+        sp=getSharedPreferences("mysp1",MODE_PRIVATE);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +43,7 @@ public class LoginPage extends AppCompatActivity {
                 String name=etName.getText().toString();
                 int age= Integer.parseInt(etAge.getText().toString());
                 String ph=etPhone.getText().toString();
+
                 if(name.length()<2){
                     etName.setError("Enter valid data ");
                     etName.requestFocus();
@@ -52,9 +57,28 @@ public class LoginPage extends AppCompatActivity {
                     etPhone.setError("Enter valid data ");
                     etPhone.requestFocus();
                 }
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putString("name",name);
+                editor.putInt("age",age);
+                editor.putString("phone",ph);
+                editor.putString("Record","");
+
+                rgSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton rb=rgSex.findViewById(checkedId);
+                        String sex = rb.getText().toString();
+                        setSex(sex);
+                    }
+                });
+                editor.putString("sex",sex);
+                editor.commit();
                 startActivity(new Intent(LoginPage.this,HomeActivity.class));
                 finish();
             }
         });
+    }
+    public void setSex(String g){
+        sex = g;
     }
 }
