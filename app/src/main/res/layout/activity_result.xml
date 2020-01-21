@@ -30,7 +30,6 @@
         android:text="Between 18.5 and 25 is normal"
         android:textAlignment="center"
         android:layout_marginTop="10sp"
-        android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

@@ -36,47 +36,57 @@ public class LoginPage extends AppCompatActivity {
         rbFemale=findViewById(R.id.rbFemale);
         btnRegister=findViewById(R.id.btnRegister);
         sp=getSharedPreferences("mysp1",MODE_PRIVATE);
+        String n = sp.getString("name","");
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name=etName.getText().toString();
-                int age= Integer.parseInt(etAge.getText().toString());
-                String ph=etPhone.getText().toString();
+        if(n.length()!=0){
+            startActivity(new Intent(LoginPage.this,HomeActivity.class));
+            finish();
+        }
+        else{
+            btnRegister.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String name=etName.getText().toString();
+                    int age= Integer.parseInt(etAge.getText().toString());
+                    String ph=etPhone.getText().toString();
 
-                if(name.length()<2){
-                    etName.setError("Enter valid data ");
-                    etName.requestFocus();
-                    Toast.makeText(LoginPage.this, "", Toast.LENGTH_SHORT).show();
-                }
-                if(age<18){
-                    etAge.setError("Age must be greater than 18 ");
-                    etAge.requestFocus();
-                }
-                if(ph.length()<10){
-                    etPhone.setError("Enter valid data ");
-                    etPhone.requestFocus();
-                }
-                SharedPreferences.Editor editor=sp.edit();
-                editor.putString("name",name);
-                editor.putInt("age",age);
-                editor.putString("phone",ph);
-                editor.putString("Record","");
-
-                rgSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        RadioButton rb=rgSex.findViewById(checkedId);
-                        String sex = rb.getText().toString();
-                        setSex(sex);
+                    if(name.length()<2){
+                        etName.setError("Enter valid data ");
+                        etName.requestFocus();
+                        Toast.makeText(LoginPage.this, "", Toast.LENGTH_SHORT).show();
+                        return;
                     }
-                });
-                editor.putString("sex",sex);
-                editor.commit();
-                startActivity(new Intent(LoginPage.this,HomeActivity.class));
-                finish();
-            }
-        });
+                    if(age<18){
+                        etAge.setError("Age must be greater than 18 ");
+                        etAge.requestFocus();
+                        return;
+                    }
+                    if(ph.length()<10){
+                        etPhone.setError("Enter valid data ");
+                        etPhone.requestFocus();
+                        return;
+                    }
+                    SharedPreferences.Editor editor=sp.edit();
+                    editor.putString("name",name);
+                    editor.putInt("age",age);
+                    editor.putString("phone",ph);
+                    editor.putString("Record","");
+
+                    rgSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(RadioGroup group, int checkedId) {
+                            RadioButton rb=rgSex.findViewById(checkedId);
+                            String sex = rb.getText().toString();
+                            setSex(sex);
+                        }
+                    });
+                    editor.putString("sex",sex);
+                    editor.commit();
+                    startActivity(new Intent(LoginPage.this,HomeActivity.class));
+                    finish();
+                }
+            });
+        }
     }
     public void setSex(String g){
         sex = g;

@@ -28,15 +28,17 @@
         android:id="@+id/etAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:hint="Enter Your age"
-        android:layout_marginTop="40dp"/>
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/etPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:hint="Enter Your mobile Number"
-        android:layout_marginTop="40dp"/>
+        android:inputType="number" />
 
     <RadioGroup
         android:id="@+id/rgSex"
@@ -46,8 +48,10 @@
 
         <RadioButton
             android:id="@+id/rbMale"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="MALE" />
 
         <RadioButton

@@ -58,16 +58,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
+        android:inputType="number"
         android:text="Weight"
         android:textAlignment="center"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/etWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:hint="Enter your weight"
-        android:layout_marginTop="10dp"/>
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btnCalculate"
@@ -84,4 +86,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/tvTemp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="200dp"/>
 </LinearLayout>
